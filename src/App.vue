@@ -1,28 +1,46 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <sui-container class="center aligned">
+      <sui-grid class="one column centered align">
+        <sui-grid-column class="one column centered align">
+          <sui-grid-row class="one column centered align">
+            <sui-segment raised>
+              <InputBar @onSubmit="onSubmit" class="align" />
+              <QRCode :url="url" class="centered" />
+            </sui-segment>
+          </sui-grid-row>
+        </sui-grid-column>
+      </sui-grid>
+    </sui-container>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import InputBar from "./components/InputBar";
+import QRCode from "./components/qrCode";
+// import axios from "axios";
 
 export default {
-  name: 'App',
+  name: "App",
+  data() {
+    return {
+      url: "",
+    };
+  },
   components: {
-    HelloWorld
-  }
-}
+    InputBar,
+    QRCode,
+  },
+  methods: {
+    onSubmit: function(url) {
+      this.url = url;
+    },
+  },
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+<style scoped>
+.align {
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
